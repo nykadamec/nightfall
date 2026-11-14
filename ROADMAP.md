@@ -51,8 +51,8 @@ That is about **7–8 months** in the middle of the 6–9 month range. If a phas
 
 Update the `[ ]` to `[x]` when the task’s acceptance criteria have passed. Counts are for a quick overall picture.
 
-- Overall: `4 / 47` tasks
-- Phase 0: `4 / 6` · Phase 1: `0 / 7` · Phase 2: `0 / 7` · Phase 3: `0 / 8`
+- Overall: `5 / 47` tasks
+- Phase 0: `5 / 6` · Phase 1: `0 / 7` · Phase 2: `0 / 7` · Phase 3: `0 / 8`
 - Phase 4: `0 / 6` · Phase 5: `0 / 4` · Phase 6: `0 / 5` · Phase 7: `0 / 4`
 
 ### Phase 0
@@ -61,7 +61,7 @@ Update the `[ ]` to `[x]` when the task’s acceptance criteria have passed. Cou
 - [x] T0.2 Git repository, `.gitignore`, root docs
 - [x] T0.3 Project skeleton and `project.godot` defaults
 - [x] T0.4 Autoload stubs (`EventBus`, `RunState`)
-- [ ] T0.5 Headless smoke script (and GUT if it installs cleanly)
+- [x] T0.5 Headless smoke script (and GUT if it installs cleanly)
 - [ ] T0.6 Empty isometric main scene
 
 ### Phase 1
@@ -627,6 +627,7 @@ The agent appends one bullet per finished task, newest first.
 
 Format: ``- YYYY-MM-DD — T0.1 — short description of what landed``.
 
+- 2026-11-14 — T0.5 — Add headless CI smoke test script (scripts/ci/smoke_test.gd) and document command in README.md
 - 2026-11-14 — T0.4 — Add EventBus and RunState autoload stubs in project.godot
 - 2026-11-14 — T0.3 — Create folder skeleton, project.godot defaults (Compatibility, 1280x720, typed warnings, Input Map, collision layers)
 - 2026-11-14 — T0.2 — Add Godot 4 .gitignore and track AGENTS.md

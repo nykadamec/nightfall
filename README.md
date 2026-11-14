@@ -20,3 +20,13 @@ godot --version
 ```
 
 > **Beta risk:** Godot 4.8-beta3 is pre-release software. Commit frequently, keep `.godot/` untracked, and do not upgrade or downgrade the engine mid-task.
+
+## Headless CI Checks
+
+Run the import check and headless smoke test:
+
+```sh
+godot --headless --path . --import
+godot --headless --path . -s res://scripts/ci/smoke_test.gd
+```
+
