@@ -13,6 +13,11 @@ config_version=5
 config/name="Nightfall"
 config/features=PackedStringArray("4.8", "GL Compatibility")
 
+[autoload]
+
+EventBus="*res://scripts/autoload/event_bus.gd"
+RunState="*res://scripts/autoload/run_state.gd"
+
 [debug]
 
 gdscript/warnings/untyped_declaration=2
