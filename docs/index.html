@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nightfall — Open-Source Isometric 2D Survivor-Like in Godot 4</title>
+  <meta
+    name="description"
+    content="Nightfall is a free, open-source isometric 2D survivor-like game and modular Godot 4 GDScript starter template. MIT code, CC0-1.0 pixel art, 31 headless CI tests."
+  />
+  <link rel="icon" type="image/png" href="assets/pickups/xp_gem_blue.png" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <canvas id="ember-canvas" aria-hidden="true"></canvas>
+
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a class="brand" href="#top">
+        <img class="pixel-art" src="assets/characters/player_se.png" alt="Nightfall Hero Sprite" />
+        <span>Nightfall</span>
+      </a>
+
+      <button
+        id="nav-toggle"
+        class="nav-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="nav-links"
+      >
+        Menu
+      </button>
+
+      <ul id="nav-links" class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#arsenal">Arsenal &amp; Bestiary</a></li>
+        <li><a href="#showcase">Showcase</a></li>
+        <li><a href="#template">Use as Template</a></li>
+        <li><a href="#architecture">Architecture</a></li>
+        <li><a href="#license">License</a></li>
+        <li><a class="btn btn-primary btn-sm" href="#quickstart">Get Started</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="badge-row">
+            <span class="badge badge-gold">Godot 4.8-beta3 · Pure GDScript</span>
+            <span class="badge badge-green">MIT Code + CC0-1.0 Art</span>
+            <span class="badge">31 Headless CI Checks</span>
+          </div>
+
+          <h1>
+            Survive the Graveyard.<br />
+            <span>Fork the Foundation.</span>
+          </h1>
+
+          <p class="hero-lead">
+            <strong>Nightfall</strong> is a playable isometric 2D gothic survivor-like built in Godot 4
+            with strict static typing, data-driven <code>Resource</code> definitions, object pooling,
+            procedural graveyard generation, and automated headless tests — ready to play, mod, or
+            reuse as a clean open-source template for your own games.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#quickstart">Clone &amp; Run in Godot</a>
+            <a class="btn btn-secondary" href="#template">Reuse for New Projects</a>
+            <a class="btn btn-secondary" data-repo-link href="https://github.com" target="_blank" rel="noopener noreferrer">
+              View Source on GitHub
+            </a>
+          </div>
+
+          <div class="hero-meta">
+            <div class="meta-stat">
+              <strong>3 Weapons</strong>
+              <span>Whip, Holy Bolt, Spirit Aura</span>
+            </div>
+            <div class="meta-stat">
+              <strong>4 Enemies + Boss</strong>
+              <span>Bat, Skeleton, Zombie, Ghost, Vampire Lord</span>
+            </div>
+            <div class="meta-stat">
+              <strong>100% Open</strong>
+              <span>MIT scripts &amp; CC0-1.0 sprites</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-stage">
+          <div class="hero-mockup-wrap">
+            <img
+              src="assets/ui/gameplay_reference.png"
+              alt="Nightfall isometric graveyard gameplay reference"
+            />
+          </div>
+          <div class="hero-sprite-strip" aria-label="Playable character and enemy sprites">
+            <img class="pixel-art" src="assets/characters/player_se.png" alt="Whip Hunter" title="Player Hunter" />
+            <img class="pixel-art" src="assets/characters/bat.png" alt="Cave Bat" title="Cave Bat" />
+            <img class="pixel-art" src="assets/characters/skeleton.png" alt="Skeleton" title="Skeleton" />
+            <img class="pixel-art" src="assets/characters/zombie.png" alt="Zombie" title="Zombie" />
+            <img class="pixel-art" src="assets/characters/ghost.png" alt="Ghost" title="Ghost" />
+            <img class="pixel-art" src="assets/characters/vampire_lord.png" alt="Vampire Lord Boss" title="Vampire Lord Boss" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Playable MVP &amp; Clean Codebase</span>
+          <h2>Everything Included Out of the Box</h2>
+          <p>
+            Designed for clarity and beginner-friendly extensibility without sacrificing real
+            survivor-like engineering fundamentals.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <div class="card-header">
+              <div class="card-icon">
+                <img class="pixel-art" src="assets/props/gravestones_group.png" alt="Isometric Arena" />
+              </div>
+              <div>
+                <h3>Procedural Isometric Arena</h3>
+                <span class="card-sub">128×64 TileMapLayer + Y-Sort</span>
+              </div>
+            </div>
+            <p>
+              Generates a seeded gothic graveyard using <code>FastNoiseLite</code> terrain patches,
+              boundary water walls, Y-sorted obstacles, and flickering brazier lights.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <div class="card-icon">
+                <img class="pixel-art" src="assets/ui/icon_sword.png" alt="Auto-Attack Combat" />
+              </div>
+              <div>
+                <h3>Auto-Attacking Combat</h3>
+                <span class="card-sub">Data-Driven Weapons &amp; Passives</span>
+              </div>
+            </div>
+            <p>
+              Weapons and passives live in <code>.tres</code> resources (<code>WeaponData</code>,
+              <code>PassiveData</code>). Level-up cards offer 3 choices with rerolls and skips.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <div class="card-icon">
+                <img class="pixel-art" src="assets/pickups/xp_gem_red.png" alt="Object Pooling" />
+              </div>
+              <div>
+                <h3>Object Pooling</h3>
+                <span class="card-sub">PoolManager Autoload</span>
+              </div>
+            </div>
+            <p>
+              Enemies, projectiles, XP gems, coins, chickens, and floating damage numbers are
+              prefilled and recycled via <code>PoolManager</code> to avoid runtime GC spikes.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <div class="card-icon">
+                <img class="pixel-art" src="assets/pickups/coin.png" alt="Meta Progression" />
+              </div>
+              <div>
+                <h3>Meta Progression &amp; Save</h3>
+                <span class="card-sub">SaveManager (ConfigFile)</span>
+              </div>
+            </div>
+            <p>
+              Collect gold coins during runs, bank them automatically on death or victory, and
+              unlock new weapons in the gothic Unlocks shop. Settings persist in <code>user://</code>.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <div class="card-icon">
+                <img class="pixel-art" src="assets/props/brazier.png" alt="Combat Juice and Audio" />
+              </div>
+              <div>
+                <h3>Combat Juice &amp; Synth Audio</h3>
+                <span class="card-sub">HitFeedback &amp; AudioManager</span>
+              </div>
+            </div>
+            <p>
+              Sprite hit-flash, directional knockback, camera shake with decay, pooled damage
+              numbers, and procedural placeholder SFX/music waves with zero external audio lock-in.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="card-header">
+              <div class="card-icon">
+                <img class="pixel-art" src="assets/ui/icon_ring.png" alt="Headless CI" />
+              </div>
+              <div>
+                <h3>31 Headless CI Tests</h3>
+                <span class="card-sub">scripts/ci/*.gd</span>
+              </div>
+            </div>
+            <p>
+              Every core mechanic—movement, collision, weapons, XP curve, pooling, boss spawn,
+              save/load, and full UI transitions—is verified by headless <code>SceneTree</code> scripts.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Arsenal & Bestiary -->
+    <section id="arsenal" class="section section-alt">
+      <div class="container" data-tab-group>
+        <div class="section-head">
+          <span class="eyebrow">Game Data Reference</span>
+          <h2>Arsenal, Passives &amp; Bestiary</h2>
+          <p>
+            Stats below match the actual <code>.tres</code> resource files under
+            <code>res://resources/</code>.
+          </p>
+        </div>
+
+        <div class="tabs" role="tablist" aria-label="Game entities">
+          <button class="tab-btn active" type="button" role="tab" aria-selected="true" data-tab-target="weapons">
+            Weapons (3)
+          </button>
+          <button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab-target="passives">
+            Passives (4)
+          </button>
+          <button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab-target="enemies">
+            Enemies &amp; Boss (5)
+          </button>
+          <button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab-target="controls">
+            Controls &amp; Pickups
+          </button>
+        </div>
+
+        <!-- Weapons -->
+        <div class="tab-panel active" data-tab-panel="weapons">
+          <div class="grid-3">
+            <article class="card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <img class="pixel-art" src="assets/ui/icon_sword.png" alt="Vampire Whip" />
+                </div>
+                <div>
+                  <h3>Vampire Whip</h3>
+                  <span class="card-sub">Starter · whip.tres</span>
+                </div>
+              </div>
+              <p>Lashes horizontally toward the nearest foe on cooldown, cleaving groups in an arc.</p>
+              <div class="stat-pills">
+                <span class="stat-pill"><strong>DMG</strong> 10</span>
+                <span class="stat-pill"><strong>CD</strong> 1.2s</span>
+                <span class="stat-pill"><strong>Area</strong> 110×44</span>
+                <span class="stat-pill"><strong>Max Lv</strong> 5</span>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <img class="pixel-art" src="assets/ui/icon_staff.png" alt="Holy Bolt" />
+                </div>
+                <div>
+                  <h3>Holy Bolt</h3>
+                  <span class="card-sub">Unlock (25 Gold) · holy_bolt.tres</span>
+                </div>
+              </div>
+              <p>Fires a silver projectile aimed automatically at the closest enemy in range.</p>
+              <div class="stat-pills">
+                <span class="stat-pill"><strong>DMG</strong> 14</span>
+                <span class="stat-pill"><strong>CD</strong> 1.4s</span>
+                <span class="stat-pill"><strong>Lifetime</strong> 1.8s</span>
+                <span class="stat-pill"><strong>Max Lv</strong> 5</span>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <img class="pixel-art" src="assets/ui/icon_sun.png" alt="Spirit Aura" />
+                </div>
+                <div>
+                  <h3>Spirit Aura</h3>
+                  <span class="card-sub">Unlock (40 Gold) · spirit_aura.tres</span>
+                </div>
+              </div>
+              <p>Surrounds the hunter with an orbiting ring that pulses damage to nearby enemies.</p>
+              <div class="stat-pills">
+                <span class="stat-pill"><strong>DMG</strong> 6</span>
+                <span class="stat-pill"><strong>Tick</strong> 0.7s</span>
+                <span class="stat-pill"><strong>Radius</strong> 78 px</span>
+                <span class="stat-pill"><strong>Max Lv</strong> 5</span>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- Passives -->
+        <div class="tab-panel" data-tab-panel="passives">
+          <div class="grid-2">
+            <article class="card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <img class="pixel-art" src="assets/ui/icon_potion.png" alt="Vitality" />
+                </div>
+                <div>
+                  <h3>Vitality</h3>
+                  <span class="card-sub">max_hp.tres</span>
+                </div>
+              </div>
+              <p>+20 Max HP and immediately heals 20 HP per rank (up to Level 5).</p>
+            </article>
+
+            <article class="card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <img class="pixel-art" src="assets/ui/icon_swirl.png" alt="Swift Boots" />
+                </div>
+                <div>
+                  <h3>Swift Boots</h3>
+                  <span class="card-sub">move_speed.tres</span>
+                </div>
+              </div>
+              <p>+15% Move Speed per rank to kite swarms through graveyard obstacles.</p>
+            </article>
+
+            <article class="card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <img class="pixel-art" src="assets/ui/icon_ring.png" alt="Chronos Tome" />
+                </div>
+                <div>
+                  <h3>Chronos Tome</h3>
+                  <span class="card-sub">cooldown_reduction.tres</span>
+                </div>
+              </div>
+              <p>-10% Weapon Cooldown per rank across all equipped weapons.</p>
+            </article>
+
+            <article class="card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <img class="pixel-art" src="assets/ui/icon_flame.png" alt="Blood Sigil" />
+                </div>
+                <div>
+                  <h3>Blood Sigil</h3>
+                  <span class="card-sub">damage.tres</span>
+                </div>
+              </div>
+              <p>+15% All Weapon Damage per rank for late-run boss melts.</p>
+            </article>
+          </div>
+        </div>
+
+        <!-- Enemies -->
+        <div class="tab-panel" data-tab-panel="enemies">
+          <div class="grid-3">
+            <article class="card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <img class="pixel-art" src="assets/characters/bat.png" alt="Cave Bat" />
+                </div>
+                <div>
+                  <h3>Cave Bat</h3>
+                  <span class="card-sub">00:00+ · bat.tres</span>
+                </div>
+              </div>
+              <p>Fast early-game swarm flyer.</p>
+              <div class="stat-pills">
+                <span class="stat-pill"><strong>HP</strong> 10</span>
+                <span class="stat-pill"><strong>SPD</strong> 95</span>
+                <span class="stat-pill"><strong>DMG</strong> 10</span>
+                <span class="stat-pill"><strong>XP</strong> 5</span>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <img class="pixel-art" src="assets/characters/skeleton.png" alt="Skeleton" />
+                </div>
+                <div>
+                  <h3>Skeleton</h3>
+                  <span class="card-sub">00:20+ · skeleton.tres</span>
+                </div>
+              </div>
+              <p>Balanced undead pursuer with higher coin drop rate.</p>
+              <div class="stat-pills">
+                <span class="stat-pill"><strong>HP</strong> 18</span>
+                <span class="stat-pill"><strong>SPD</strong> 82</span>
+                <span class="stat-pill"><strong>DMG</strong> 12</span>
+                <span class="stat-pill"><strong>XP</strong> 8</span>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <img class="pixel-art" src="assets/characters/zombie.png" alt="Zombie" />
+                </div>
+                <div>
+                  <h3>Zombie</h3>
+                  <span class="card-sub">00:45+ · zombie.tres</span>
+                </div>
+              </div>
+              <p>Slow, durable bruiser that absorbs whip strikes.</p>
+              <div class="stat-pills">
+                <span class="stat-pill"><strong>HP</strong> 30</span>
+                <span class="stat-pill"><strong>SPD</strong> 65</span>
+                <span class="stat-pill"><strong>DMG</strong> 16</span>
+                <span class="stat-pill"><strong>XP</strong> 10</span>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <img class="pixel-art" src="assets/characters/ghost.png" alt="Ghost" />
+                </div>
+                <div>
+                  <h3>Ghost</h3>
+                  <span class="card-sub">01:15+ · ghost.tres</span>
+                </div>
+              </div>
+              <p>Rapid mid-wave stalker that closes distance quickly.</p>
+              <div class="stat-pills">
+                <span class="stat-pill"><strong>HP</strong> 14</span>
+                <span class="stat-pill"><strong>SPD</strong> 115</span>
+                <span class="stat-pill"><strong>DMG</strong> 10</span>
+                <span class="stat-pill"><strong>XP</strong> 9</span>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="card-header">
+                <div class="card-icon">
+                  <img class="pixel-art" src="assets/characters/vampire_lord.png" alt="Vampire Lord" />
+                </div>
+                <div>
+                  <h3>Vampire Lord</h3>
+                  <span class="card-sub">Boss at 10:00 · vampire_lord.tres</span>
+                </div>
+              </div>
+              <p>Final boss with dedicated HUD health bar. Defeating him triggers run victory.</p>
+              <div class="stat-pills">
+                <span class="stat-pill"><strong>HP</strong> 600</span>
+                <span class="stat-pill"><strong>SPD</strong> 88</span>
+                <span class="stat-pill"><strong>DMG</strong> 25</span>
+                <span class="stat-pill"><strong>XP</strong> 100</span>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- Controls & Pickups -->
+        <div class="tab-panel" data-tab-panel="controls">
+          <div class="grid-2">
+            <div class="card">
+              <h3 style="margin-bottom: 0.9rem;">Input Map Controls</h3>
+              <ul class="controls-list">
+                <li><span>Move in isometric arena</span><span><kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> / Arrows</span></li>
+                <li><span>Weapon firing</span><span>Automatic on cooldown</span></li>
+                <li><span>Confirm menu / level-up choice</span><span><kbd>Enter</kbd> / <kbd>Space</kbd> / Click</span></li>
+                <li><span>Options &amp; Unlocks</span><span>Main Menu overlays</span></li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <h3 style="margin-bottom: 0.9rem;">Pooled Pickups</h3>
+              <ul class="controls-list">
+                <li>
+                  <span><img class="pixel-art" style="display:inline;height:20px;vertical-align:middle;margin-right:6px" src="assets/pickups/xp_gem_blue.png" alt="" />XP Gem</span>
+                  <span>Dropped on enemy death</span>
+                </li>
+                <li>
+                  <span><img class="pixel-art" style="display:inline;height:20px;vertical-align:middle;margin-right:6px" src="assets/pickups/coin.png" alt="" />Gold Coin</span>
+                  <span>12–18% drop · banked on end</span>
+                </li>
+                <li>
+                  <span><img class="pixel-art" style="display:inline;height:20px;vertical-align:middle;margin-right:6px" src="assets/pickups/chicken.png" alt="" />Roast Chicken</span>
+                  <span>3–5% drop · heals HP</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Visual Showcase -->
+    <section id="showcase" class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Art &amp; UI Direction</span>
+          <h2>Visual Showcase</h2>
+          <p>
+            Click any reference screen to inspect the gothic UI layout, 9-slice frames, and
+            isometric arena composition.
+          </p>
+        </div>
+
+        <div class="gallery-grid">
+          <button
+            class="gallery-item"
+            type="button"
+            data-lightbox-src="assets/ui/main_menu_reference.png"
+            data-lightbox-title="Main Menu — Gothic Stone &amp; Gold Layout"
+          >
+            <img src="assets/ui/main_menu_reference.png" alt="Main Menu reference" />
+            <div class="gallery-caption">
+              <strong>Main Menu</strong>
+              <span>Play, Unlocks shop, Options, Quit, and persistent Gold counter.</span>
+            </div>
+          </button>
+
+          <button
+            class="gallery-item"
+            type="button"
+            data-lightbox-src="assets/ui/gameplay_reference.png"
+            data-lightbox-title="Gameplay — Isometric Graveyard &amp; HUD"
+          >
+            <img src="assets/ui/gameplay_reference.png" alt="Gameplay reference" />
+            <div class="gallery-caption">
+              <strong>Isometric Arena</strong>
+              <span>128×64 diamond tiles, Y-sorted props, and top HUD meters.</span>
+            </div>
+          </button>
+
+          <button
+            class="gallery-item"
+            type="button"
+            data-lightbox-src="assets/ui/level_up_reference.png"
+            data-lightbox-title="Level-Up — 3-Card Upgrade Draft"
+          >
+            <img src="assets/ui/level_up_reference.png" alt="Level-up reference" />
+            <div class="gallery-caption">
+              <strong>Level-Up Draft</strong>
+              <span>Three randomized weapon/passive cards with Reroll and Skip.</span>
+            </div>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Use as Template -->
+    <section id="template" class="section section-alt">
+      <div class="container" data-tab-group>
+        <div class="section-head">
+          <span class="eyebrow">Built for New Projects</span>
+          <h2>Extend &amp; Reuse as a Starter Template</h2>
+          <p>
+            Nightfall separates gameplay logic from content data. Create new weapons, enemies, and
+            upgrades in minutes using Godot <code>Resource</code> files—no core script rewrites needed.
+          </p>
+        </div>
+
+        <div class="tabs" role="tablist" aria-label="Template recipes">
+          <button class="tab-btn active" type="button" role="tab" aria-selected="true" data-tab-target="recipe-weapon">
+            Add a Weapon
+          </button>
+          <button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab-target="recipe-enemy">
+            Add an Enemy
+          </button>
+          <button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab-target="recipe-passive">
+            Add a Passive
+          </button>
+          <button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab-target="recipe-ci">
+            Run CI Suite
+          </button>
+        </div>
+
+        <div class="tab-panel active" data-tab-panel="recipe-weapon">
+          <div class="code-block-wrap">
+            <button class="copy-btn" type="button">Copy</button>
+            <pre><code># 1. Create a WeaponData resource in res://resources/weapons/frost_nova.tres
+[gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/weapon_data.gd" id="1_wd"]
+[ext_resource type="PackedScene" path="res://scenes/weapons/spirit_aura_weapon.tscn" id="2_scn"]
+
+[resource]
+script = ExtResource("1_wd")
+id = "frost_nova"
+display_name = "Frost Nova"
+description = "Chills nearby foes in an expanding arcane pulse."
+damage = 12
+cooldown = 1.1
+attack_size = Vector2(96, 96)
+max_level = 5
+weapon_scene = ExtResource("2_scn")
+
+# 2. Register it in LevelUpScreen.WEAPON_DATAS (and SaveManager.DEFAULT_UNLOCKS if unlocked by default).</code></pre>
+          </div>
+        </div>
+
+        <div class="tab-panel" data-tab-panel="recipe-enemy">
+          <div class="code-block-wrap">
+            <button class="copy-btn" type="button">Copy</button>
+            <pre><code># 1. Duplicate an EnemyData resource (e.g. res://resources/enemies/werewolf.tres)
+# 2. Point enemy_scene to a scene extending EnemyBase (res://scripts/actors/enemy_base.gd)
+# 3. Add the resource to res://resources/waves/early_waves.tres with an unlock timestamp:
+
+enemy_types = Array[Resource]([..., ExtResource("6_werewolf")])
+unlock_times_sec = Array[float]([0.0, 20.0, 45.0, 75.0, 120.0])
+
+# Note: Unused CC0 werewolf.png &amp; mushroom.png sprites are already included in res://assets/characters/enemies/!</code></pre>
+          </div>
+        </div>
+
+        <div class="tab-panel" data-tab-panel="recipe-passive">
+          <div class="code-block-wrap">
+            <button class="copy-btn" type="button">Copy</button>
+            <pre><code># Create a PassiveData .tres in res://resources/upgrades/
+# StatType enum in scripts/resources/passive_data.gd:
+#   0 = MAX_HP | 1 = MOVE_SPEED | 2 = COOLDOWN_REDUCTION | 3 = DAMAGE
+
+[gd_resource type="Resource" script_class="PassiveData" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/resources/passive_data.gd" id="1_pd"]
+
+[resource]
+script = ExtResource("1_pd")
+id = "fleet_cloak"
+display_name = "Fleet Cloak"
+description = "+10% Move Speed."
+stat_type = 1
+amount_per_level = 0.1
+max_level = 5</code></pre>
+          </div>
+        </div>
+
+        <div class="tab-panel" data-tab-panel="recipe-ci">
+          <div class="code-block-wrap">
+            <button class="copy-btn" type="button">Copy</button>
+            <pre><code># Verify Godot version, import assets cleanly, and run all 31 headless CI checks:
+godot --version
+godot --headless --path . --import
+for f in scripts/ci/*.gd; do
+  godot --headless --path . -s "res://$f" || exit 1
+done</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Architecture -->
+    <section id="architecture" class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Codebase Map</span>
+          <h2>Architecture &amp; Conventions</h2>
+          <p>
+            Strict static GDScript typing (warnings treated as errors in
+            <code>project.godot</code>) and decoupled signal-based communication.
+          </p>
+        </div>
+
+        <div class="grid-2" style="margin-bottom: 1.5rem;">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Autoload Singleton</th>
+                  <th>Responsibility</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>EventBus</code></td>
+                  <td>Global typed signals only (<code>run_started</code>, <code>enemy_died</code>, <code>level_up</code>, <code>boss_died</code>).</td>
+                </tr>
+                <tr>
+                  <td><code>RunState</code></td>
+                  <td>Transient run timer, XP curve, level, HP, gold, rerolls, and passive levels.</td>
+                </tr>
+                <tr>
+                  <td><code>PoolManager</code></td>
+                  <td>Pre-warmed object pools for enemies, bolts, gems, coins, chickens, and damage text.</td>
+                </tr>
+                <tr>
+                  <td><code>SaveManager</code></td>
+                  <td>Persists <code>meta_gold</code>, weapon unlocks, fullscreen, and volume via <code>ConfigFile</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>AudioManager</code></td>
+                  <td>Pooled SFX players and looping placeholder menu/run synth music.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Layer</th>
+                  <th>Name</th>
+                  <th>Used By</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>1</td><td><code>world</code></td><td>Boundary wall tiles and Y-sorted graveyard props</td></tr>
+                <tr><td>2</td><td><code>player</code></td><td>Player <code>CharacterBody2D</code> &amp; hurtbox</td></tr>
+                <tr><td>3</td><td><code>enemies</code></td><td>Chasing enemies &amp; Vampire Lord boss</td></tr>
+                <tr><td>4</td><td><code>player_hit</code></td><td>Whip arc, Holy Bolt projectile, Spirit Aura</td></tr>
+                <tr><td>5</td><td><code>enemy_hit</code></td><td>Enemy contact damage hitboxes</td></tr>
+                <tr><td>6</td><td><code>pickups</code></td><td>XP gems, gold coins, roast chicken</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Start -->
+    <section id="quickstart" class="section section-alt">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Run Locally &amp; Host on GitHub Pages</span>
+          <h2>Quick Start</h2>
+          <p>
+            Pinned to <strong>Godot 4.8-beta3</strong> (standard GDScript build, see
+            <code>VERSION.txt</code>).
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3 style="margin-bottom: 0.75rem;">1. Clone &amp; Boot</h3>
+            <div class="code-block-wrap">
+              <button class="copy-btn" type="button">Copy</button>
+              <pre><code id="clone-command-code">git clone &lt;your-fork-or-repo-url&gt;.git
+cd Nightfall
+godot --headless --path . --import
+godot --headless --path . -s res://scripts/ci/smoke_test.gd</code></pre>
+            </div>
+            <p style="margin-top: 0.85rem;">
+              Open <code>project.godot</code> in Godot 4.8-beta3 and press <kbd>F5</kbd> to launch
+              <code>res://ui/main_menu/main_menu.tscn</code>.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3 style="margin-bottom: 0.75rem;">2. Publish This Site on GitHub Pages</h3>
+            <p style="margin-bottom: 0.85rem;">
+              This static site lives in <code>docs/</code> and includes
+              <code>.github/workflows/pages.yml</code>. To publish on GitHub:
+            </p>
+            <ol style="margin: 0; padding-left: 1.25rem; color: var(--text-muted);">
+              <li>Push this repository to GitHub.</li>
+              <li>Open <strong>Settings → Pages</strong> in your repository.</li>
+              <li>Choose <strong>GitHub Actions</strong> (recommended) or <strong>Deploy from a branch → <code>/docs</code></strong>.</li>
+              <li>Your site goes live automatically at <code>https://&lt;user&gt;.github.io/&lt;repo&gt;/</code>.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- License -->
+    <section id="license" class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Free to Share, Modify &amp; Build Upon</span>
+          <h2>Open-Source Licensing</h2>
+          <p>
+            Permissive dual licensing ensures you can freely redistribute Nightfall or use its code
+            and sprites in commercial or hobby projects.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <h3>Source Code — MIT</h3>
+            <p style="margin-top: 0.5rem;">
+              All GDScript files, Godot scenes, custom resources, UI themes, and this GitHub Pages
+              website are licensed under the <strong>MIT License</strong> (<code>LICENSE</code>).
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Game Art — CC0 1.0</h3>
+            <p style="margin-top: 0.5rem;">
+              All original tiles, props, character sprites, pickups, and UI textures under
+              <code>assets/</code> are dedicated to the public domain via <strong>CC0 1.0</strong>
+              (<code>assets/LICENSE</code>).
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Bundled Addons — MIT</h3>
+            <p style="margin-top: 0.5rem;">
+              Includes <code>addons/lit/</code> (2D lighting) and <code>addons/godot_mcp_toolkit/</code>,
+              each distributed under their respective <strong>MIT</strong> licenses.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <strong>Nightfall</strong> · Open-Source Godot 4 Isometric Survivor-Like &amp; Template ·
+        MIT Code / CC0-1.0 Art
+      </div>
+      <div class="footer-links">
+        <a href="#top">Back to Top</a>
+        <a href="#template">Template Guide</a>
+        <a href="#license">License</a>
+        <a data-repo-link href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="lightbox-title">
+    <div class="lightbox-inner">
+      <img id="lightbox-img" src="" alt="" />
+      <div class="lightbox-bar">
+        <strong id="lightbox-title" style="color: var(--gold);"></strong>
+        <button id="lightbox-close" class="lightbox-close" type="button">Close (Esc)</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

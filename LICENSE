@@ -1,0 +1,30 @@
+MIT License
+
+Copyright (c) 2026 Dominik Adamec and Nightfall Contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+Asset & Addon Licensing Summary:
+- Original game scripts, scenes, resources, UI, and documentation: MIT License (above).
+- Original game art assets under `assets/` (and mirrored in `docs/assets/`): CC0 1.0 Universal (Public Domain), see `assets/LICENSE`.
+- Third-party Godot addons under `addons/`:
+  - `addons/lit/` — MIT License, Copyright (c) 2026 Shawn Deprey (Fading Lantern Games), see `addons/lit/LICENSE`.
+  - `addons/godot_mcp_toolkit/` — MIT License, Copyright (c) 2026 NPGameDev, see `addons/godot_mcp_toolkit/LICENSE`.
