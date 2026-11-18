@@ -1,0 +1,176 @@
+[gd_scene format=4 uid="uid://c0hudoverlay1"]
+
+[ext_resource type="Script" path="res://scripts/ui/hud.gd" id="1_hud"]
+[ext_resource type="Theme" path="res://ui/theme/game_theme.tres" id="2_thm"]
+[ext_resource type="Texture2D" path="res://assets/ui/components/bar_health_frame.png" id="3_hpf"]
+[ext_resource type="Texture2D" path="res://assets/ui/components/bar_health_fill.png" id="4_hpl"]
+[ext_resource type="Texture2D" path="res://assets/ui/components/bar_xp_frame.png" id="5_xpf"]
+[ext_resource type="Texture2D" path="res://assets/ui/components/bar_xp_fill.png" id="6_xpl"]
+[ext_resource type="Texture2D" path="res://assets/ui/components/bar_boss_frame.png" id="7_bsf"]
+[ext_resource type="Texture2D" path="res://assets/ui/components/bar_boss_fill.png" id="8_bsl"]
+[ext_resource type="Texture2D" path="res://assets/ui/components/bar_gold.png" id="9_gld"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hp_bg"]
+texture = ExtResource("3_hpf")
+texture_margin_left = 12.0
+texture_margin_top = 8.0
+texture_margin_right = 12.0
+texture_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hp_fill"]
+texture = ExtResource("4_hpl")
+texture_margin_left = 8.0
+texture_margin_top = 6.0
+texture_margin_right = 8.0
+texture_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xp_bg"]
+texture = ExtResource("5_xpf")
+texture_margin_left = 12.0
+texture_margin_top = 8.0
+texture_margin_right = 12.0
+texture_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xp_fill"]
+texture = ExtResource("6_xpl")
+texture_margin_left = 8.0
+texture_margin_top = 6.0
+texture_margin_right = 8.0
+texture_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_boss_bg"]
+texture = ExtResource("7_bsf")
+texture_margin_left = 16.0
+texture_margin_top = 8.0
+texture_margin_right = 16.0
+texture_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_boss_fill"]
+texture = ExtResource("8_bsl")
+texture_margin_left = 10.0
+texture_margin_top = 6.0
+texture_margin_right = 10.0
+texture_margin_bottom = 6.0
+
+[node name="Hud" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("2_thm")
+script = ExtResource("1_hud")
+
+[node name="TopBar" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 16.0
+offset_top = 12.0
+offset_right = -16.0
+offset_bottom = 64.0
+grow_horizontal = 2
+theme_override_constants/separation = 20
+
+[node name="HpBox" type="VBoxContainer" parent="TopBar"]
+custom_minimum_size = Vector2(230, 0)
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="HpLabel" type="Label" parent="TopBar/HpBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.9, 0.85, 1)
+theme_override_font_sizes/font_size = 14
+text = "HP 100 / 100"
+
+[node name="HpBar" type="ProgressBar" parent="TopBar/HpBox"]
+custom_minimum_size = Vector2(230, 22)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxTexture_hp_bg")
+theme_override_styles/fill = SubResource("StyleBoxTexture_hp_fill")
+value = 100.0
+show_percentage = false
+
+[node name="TimerLabel" type="Label" parent="TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.96, 0.84, 0.48, 1)
+theme_override_font_sizes/font_size = 26
+text = "00:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GoldChip" type="NinePatchRect" parent="TopBar"]
+custom_minimum_size = Vector2(140, 48)
+layout_mode = 2
+texture = ExtResource("9_gld")
+patch_margin_left = 80
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="GoldLabel" type="Label" parent="TopBar/GoldChip"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 68.0
+offset_right = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.98, 0.86, 0.45, 1)
+theme_override_font_sizes/font_size = 16
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="XpBox" type="VBoxContainer" parent="TopBar"]
+custom_minimum_size = Vector2(230, 0)
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="LevelLabel" type="Label" parent="TopBar/XpBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.88, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "LV 1"
+horizontal_alignment = 2
+
+[node name="XpBar" type="ProgressBar" parent="TopBar/XpBox"]
+custom_minimum_size = Vector2(230, 22)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxTexture_xp_bg")
+theme_override_styles/fill = SubResource("StyleBoxTexture_xp_fill")
+max_value = 10.0
+show_percentage = false
+
+[node name="BossBox" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -240.0
+offset_top = 72.0
+offset_right = 240.0
+offset_bottom = 126.0
+grow_horizontal = 2
+theme_override_constants/separation = 4
+
+[node name="BossLabel" type="Label" parent="BossBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.45, 0.48, 1)
+theme_override_font_sizes/font_size = 16
+text = "Vampire Lord"
+horizontal_alignment = 1
+
+[node name="BossBar" type="ProgressBar" parent="BossBox"]
+custom_minimum_size = Vector2(480, 24)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxTexture_boss_bg")
+theme_override_styles/fill = SubResource("StyleBoxTexture_boss_fill")
+max_value = 600.0
+value = 600.0
+show_percentage = false

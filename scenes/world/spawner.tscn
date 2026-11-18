@@ -1,0 +1,10 @@
+[gd_scene format=4 uid="uid://c0spawner001"]
+
+[ext_resource type="Script" path="res://scripts/systems/spawner.gd" id="1_spwn"]
+[ext_resource type="Resource" path="res://resources/waves/early_waves.tres" id="2_wt"]
+[ext_resource type="PackedScene" path="res://scenes/actors/enemy_bat.tscn" id="3_bat"]
+
+[node name="Spawner" type="Node2D"]
+script = ExtResource("1_spwn")
+wave_table = ExtResource("2_wt")
+enemy_scene = ExtResource("3_bat")

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PassiveData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/passive_data.gd" id="1_pd"]
+
+[resource]
+script = ExtResource("1_pd")
+id = "chronos_tome"
+display_name = "Chronos Tome"
+description = "-10% Weapon Cooldown."
+stat_type = 2
+amount_per_level = 0.1
+max_level = 5

@@ -1,0 +1,9 @@
+tile_size=128x64
+block_region_size=128x81
+block_atlas=768x81
+flat_atlas=768x64
+source_tile_width_median=316.5
+prop_scale=0.404423
+order=grass,cobblestone,dirt,graveyard_soil,water,lava
+shape=isometric 2:1 diamond
+layout_recommendation=Diamond Down, Horizontal offset axis

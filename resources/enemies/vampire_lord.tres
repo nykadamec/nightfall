@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/enemy_data.gd" id="1_ed"]
+[ext_resource type="PackedScene" path="res://scenes/actors/boss_vampire_lord.tscn" id="2_scn"]
+
+[resource]
+script = ExtResource("1_ed")
+id = "vampire_lord"
+display_name = "Vampire Lord"
+max_hp = 600
+move_speed = 88.0
+contact_damage = 25
+xp_value = 100
+enemy_scene = ExtResource("2_scn")
+chicken_drop_chance = 1.0
+coin_drop_chance = 1.0

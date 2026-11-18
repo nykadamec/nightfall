@@ -21,7 +21,7 @@ This repository is a solo hobby game: an isometric 2D survivor-like (Vampire Sur
   3. Headless smoke: `godot --headless --path . --quit-after 2` once a main scene exists, **and** any tests named in that task’s acceptance criteria (GUT / a `res://scripts/ci/` script).
   4. If a command fails, fix it before committing. Do not “skip CI” to mark the task done.
 - After the commit, tick the task in the **Progress checklist** in `ROADMAP.md` and append a short entry to the **Changelog** at the bottom of that file.
-- **Do not modify art under `res://assets/`** (PNG, WAV, etc.) except for Godot `.import` settings that are required to make an existing file load correctly (texture filter, mipmaps, tileset region, loop on audio). Do not replace, crop, restyle, or generate over existing concept art unless the human explicitly asks.
+- **Do not modify art under `res://assets/`** (PNG, WAV, etc.) except for Godot `.import` settings that are required to make an existing file load correctly (texture filter, mipmaps, tileset region, loop on audio). Do not replace, crop, restyle, or generate over existing concept art unless the human explicitly asks. The pack is already sliced; the inventory, sizes, TileSet steps and NinePatch margins are in `assets/ASSETS.md`. A contact sheet is `assets_preview.png` at the project root. Leave `assets/_source/` alone (original sheets and raw slices).
 - **Ask the human** when a design decision is needed (feel of isometric movement, damage numbers, weapon roster, run length, economy, name of the game, scope cuts). Do not silently pick a controversial default and bury it in code. Placeholders are fine if you label them and record the question in the changelog.
 - Keep the MVP small. If a task tempts you to add a new system that is not in the current phase, stop. Put the idea in the cut / later list, do not build it.
 - Comments and code should be clear enough for a beginner to read. Prefer simple, explicit code over clever abstractions. No general-purpose frameworks “for later”.
@@ -78,7 +78,7 @@ res://
 - Prefer composition: hitboxes and hurtboxes are child `Area2D` nodes with their own `CollisionShape2D`, not ad-hoc checks in `_physics_process`.
 - Gameplay bodies: `CharacterBody2D` for the player and walking enemies. Use `Area2D` for hitboxes, hurtboxes, pickups, and whip/slash volumes. Do not use `RigidBody2D` for this game.
 - **Y-sort:** put the player, enemies, world objects, and the isometric `TileMapLayer` under a shared `Node2D` with `y_sort_enabled = true`. Also enable Y-sort on the `TileMapLayer`. Do not use a deprecated workflow if the pinned editor already prefers `y_sort_enabled` on `Node2D`.
-- **Isometric map:** `TileMapLayer` + a `TileSet` with isometric tile shape (the 4.x `TileSet` isometric tile shape / diamond layout). Typical tile size for this art direction is 64×32 unless the imported tileset says otherwise. Physics stay in cartesian world space; do not assume a special isometric physics engine.
+- **Isometric map:** `TileMapLayer` + a `TileSet` with isometric tile shape (the 4.x `TileSet` isometric tile shape / diamond layout). **This pack uses tile size 128×64** (atlas `assets/tiles/tileset_iso_blocks.png`, region 128×81). Physics stay in cartesian world space; do not assume a special isometric physics engine. Setup steps are in `assets/ASSETS.md`.
 - Camera: one `Camera2D` (usually on the player or a follower). Current, with a small drag/smoothing once the prototype moves.
 - Input: use named actions in the Input Map (`move_left`, `move_right`, `move_up`, `move_down`, `pause`, `ui_accept`, `ui_cancel`). Never hard-code scancodes in gameplay code.
 
@@ -132,6 +132,16 @@ Only these singletons. Add a new one only if a task in `ROADMAP.md` says so, and
 - One `Theme` resource under `ui/theme/`, shared by all menus and HUD. Panel chrome uses `NinePatchRect` or `StyleBoxTexture` (9-slice), matching the gothic UI kit (stone gray, deep purple, gold).
 - Level-up UI and menus use `process_mode = PROCESS_MODE_ALWAYS` (or `WHEN_PAUSED` as appropriate) so they work while the tree is paused.
 - Keep UI scenes in `res://ui/`, not mixed into actor scenes.
+
+## Art pack (already sliced)
+
+- Game-ready PNGs live under `res://assets/{tiles,props,characters,pickups,ui}` and are documented in `res://assets/ASSETS.md`.
+- **Tile size is 128×64** (isometric 2:1). The main atlas is `assets/tiles/tileset_iso_blocks.png` with a **128×81** texture region (extra height = tile sides). Props on that sheet are already scaled to the same ratio as the tiles. Player target height is 112 px; pickups are smaller on purpose.
+- **Import:** project default texture filter **Nearest**, mipmaps **off**, lossless/uncompressed. See T0.7 and `assets/ASSETS.md`.
+- **No animation frames exist.** Use facing textures for the player (`player_sw`, `player_se`, `player_n`, `player_w`) and a bob/squash tween as a placeholder. Do not invent walk cycles or extra sheets.
+- UI 9-slice margins are listed in `assets/ASSETS.md` (visually checked). Mid-edge gems on panels will smear if you stretch a lot.
+- Mockups in `assets/ui/mockups/` are reference (and at most a backdrop). The main-menu mockup already has a logo and buttons painted in.
+- Werewolf, mushroom, and chest sprites exist but stay on the v1 cut list unless the human expands scope.
 
 ## Performance (survivor-like)
 

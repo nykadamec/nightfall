@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="WaveTable" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/wave_table.gd" id="1_wt"]
+[ext_resource type="Resource" path="res://resources/enemies/bat.tres" id="2_bat"]
+[ext_resource type="Resource" path="res://resources/enemies/skeleton.tres" id="3_skel"]
+[ext_resource type="Resource" path="res://resources/enemies/zombie.tres" id="4_zomb"]
+[ext_resource type="Resource" path="res://resources/enemies/ghost.tres" id="5_ghst"]
+
+[resource]
+script = ExtResource("1_wt")
+base_interval_sec = 1.6
+min_interval_sec = 0.45
+interval_decay_per_min = 0.35
+max_live_enemies = 35
+ring_min_radius = 340.0
+ring_max_radius = 480.0
+arena_half_extents = Vector2(1150, 560)
+enemy_types = Array[Resource]([ExtResource("2_bat"), ExtResource("3_skel"), ExtResource("4_zomb"), ExtResource("5_ghst")])
+unlock_times_sec = Array[float]([0.0, 20.0, 45.0, 75.0])

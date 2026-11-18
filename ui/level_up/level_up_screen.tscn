@@ -1,0 +1,292 @@
+[gd_scene format=4 uid="uid://d0levelupscrn"]
+
+[ext_resource type="Script" path="res://scripts/ui/level_up_screen.gd" id="1_lvlscr"]
+[ext_resource type="Theme" path="res://ui/theme/game_theme.tres" id="2_thm"]
+[ext_resource type="Texture2D" path="res://assets/ui/components/panel_frame_small.png" id="3_pfs"]
+[ext_resource type="Texture2D" path="res://assets/ui/components/icon_sword.png" id="4_icon"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel_bg"]
+bg_color = Color(0.1, 0.07, 0.16, 0.95)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card_normal"]
+bg_color = Color(0.15, 0.1, 0.24, 0.92)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card_hover"]
+bg_color = Color(0.24, 0.16, 0.36, 0.98)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.96, 0.84, 0.48, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="LevelUpScreen" type="Control"]
+process_mode = 2
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_thm")
+script = ExtResource("1_lvlscr")
+
+[node name="Backdrop" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.03, 0.02, 0.06, 0.72)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(780, 410)
+layout_mode = 2
+
+[node name="PanelBg" type="Panel" parent="CenterContainer/Panel"]
+show_behind_parent = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel_bg")
+
+[node name="Margin" type="MarginContainer" parent="CenterContainer/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 16
+
+[node name="VBox" type="VBoxContainer" parent="CenterContainer/Panel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/Panel/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 0.84, 0.48, 1)
+theme_override_font_sizes/font_size = 26
+text = "LEVEL UP — CHOOSE AN UPGRADE"
+horizontal_alignment = 1
+
+[node name="CardsRow" type="HBoxContainer" parent="CenterContainer/Panel/Margin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="Card1" type="Button" parent="CenterContainer/Panel/Margin/VBox/CardsRow"]
+custom_minimum_size = Vector2(220, 230)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_card_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_card_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_card_hover")
+
+[node name="Frame" type="NinePatchRect" parent="CenterContainer/Panel/Margin/VBox/CardsRow/Card1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_pfs")
+patch_margin_left = 36
+patch_margin_top = 40
+patch_margin_right = 36
+patch_margin_bottom = 40
+
+[node name="Body" type="VBoxContainer" parent="CenterContainer/Panel/Margin/VBox/CardsRow/Card1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_top = 20.0
+offset_right = -18.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="CenterContainer/Panel/Margin/VBox/CardsRow/Card1/Body"]
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+texture = ExtResource("4_icon")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CardTitle" type="Label" parent="CenterContainer/Panel/Margin/VBox/CardsRow/Card1/Body"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 0.84, 0.48, 1)
+theme_override_font_sizes/font_size = 18
+text = "Upgrade 1"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="CardDesc" type="Label" parent="CenterContainer/Panel/Margin/VBox/CardsRow/Card1/Body"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.85, 0.92, 1)
+theme_override_font_sizes/font_size = 14
+text = "Description"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Card2" type="Button" parent="CenterContainer/Panel/Margin/VBox/CardsRow"]
+custom_minimum_size = Vector2(220, 230)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_card_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_card_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_card_hover")
+
+[node name="Frame" type="NinePatchRect" parent="CenterContainer/Panel/Margin/VBox/CardsRow/Card2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_pfs")
+patch_margin_left = 36
+patch_margin_top = 40
+patch_margin_right = 36
+patch_margin_bottom = 40
+
+[node name="Body" type="VBoxContainer" parent="CenterContainer/Panel/Margin/VBox/CardsRow/Card2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_top = 20.0
+offset_right = -18.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="CenterContainer/Panel/Margin/VBox/CardsRow/Card2/Body"]
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+texture = ExtResource("4_icon")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CardTitle" type="Label" parent="CenterContainer/Panel/Margin/VBox/CardsRow/Card2/Body"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 0.84, 0.48, 1)
+theme_override_font_sizes/font_size = 18
+text = "Upgrade 2"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="CardDesc" type="Label" parent="CenterContainer/Panel/Margin/VBox/CardsRow/Card2/Body"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.85, 0.92, 1)
+theme_override_font_sizes/font_size = 14
+text = "Description"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Card3" type="Button" parent="CenterContainer/Panel/Margin/VBox/CardsRow"]
+custom_minimum_size = Vector2(220, 230)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_card_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_card_hover")
+theme_override_styles/focus = SubResource("StyleBoxFlat_card_hover")
+
+[node name="Frame" type="NinePatchRect" parent="CenterContainer/Panel/Margin/VBox/CardsRow/Card3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_pfs")
+patch_margin_left = 36
+patch_margin_top = 40
+patch_margin_right = 36
+patch_margin_bottom = 40
+
+[node name="Body" type="VBoxContainer" parent="CenterContainer/Panel/Margin/VBox/CardsRow/Card3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_top = 20.0
+offset_right = -18.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="CenterContainer/Panel/Margin/VBox/CardsRow/Card3/Body"]
+custom_minimum_size = Vector2(56, 56)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+texture = ExtResource("4_icon")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CardTitle" type="Label" parent="CenterContainer/Panel/Margin/VBox/CardsRow/Card3/Body"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 0.84, 0.48, 1)
+theme_override_font_sizes/font_size = 18
+text = "Upgrade 3"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="CardDesc" type="Label" parent="CenterContainer/Panel/Margin/VBox/CardsRow/Card3/Body"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.85, 0.92, 1)
+theme_override_font_sizes/font_size = 14
+text = "Description"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ActionsRow" type="HBoxContainer" parent="CenterContainer/Panel/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="RerollButton" type="Button" parent="CenterContainer/Panel/Margin/VBox/ActionsRow"]
+custom_minimum_size = Vector2(161, 64)
+layout_mode = 2
+text = "Reroll (3)"
+
+[node name="SkipButton" type="Button" parent="CenterContainer/Panel/Margin/VBox/ActionsRow"]
+custom_minimum_size = Vector2(161, 64)
+layout_mode = 2
+text = "Skip"

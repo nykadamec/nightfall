@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/enemy_data.gd" id="1_ed"]
+[ext_resource type="PackedScene" path="res://scenes/actors/enemy_zombie.tscn" id="2_scn"]
+
+[resource]
+script = ExtResource("1_ed")
+id = "zombie"
+display_name = "Zombie"
+max_hp = 30
+move_speed = 65.0
+contact_damage = 16
+xp_value = 10
+enemy_scene = ExtResource("2_scn")
+chicken_drop_chance = 0.05
+coin_drop_chance = 0.18

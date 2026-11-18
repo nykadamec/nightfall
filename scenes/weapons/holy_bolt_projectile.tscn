@@ -1,0 +1,18 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/holy_bolt_projectile.gd" id="1_hbp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bolt"]
+radius = 8.0
+
+[node name="HolyBoltProjectile" type="Area2D"]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("1_hbp")
+
+[node name="Visual" type="Polygon2D" parent="."]
+color = Color(0.75, 0.92, 1, 0.95)
+polygon = PackedVector2Array(-10, -4, 4, -5, 12, 0, 4, 5, -10, 4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bolt")

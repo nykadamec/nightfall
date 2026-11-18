@@ -1,0 +1,52 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/actors/boss_vampire_lord.gd" id="1_boss"]
+[ext_resource type="Texture2D" path="res://assets/characters/enemies/vampire_lord.png" id="2_tex"]
+[ext_resource type="Script" path="res://scripts/combat/hitbox.gd" id="3_hitbox"]
+[ext_resource type="Texture2D" path="res://resources/vfx/shadow_blob.tres" id="4_shadow"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_body"]
+radius = 24.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hitbox"]
+radius = 28.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hurtbox"]
+radius = 36.0
+
+[node name="BossVampireLord" type="CharacterBody2D" groups=["enemies", "bosses"]]
+collision_layer = 4
+collision_mask = 9
+script = ExtResource("1_boss")
+data_path = "res://resources/enemies/vampire_lord.tres"
+
+[node name="Shadow" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, 4)
+scale = Vector2(1.4, 1.1)
+texture = ExtResource("4_shadow")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_tex")
+offset = Vector2(0, -64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -10)
+shape = SubResource("CircleShape2D_body")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("3_hitbox")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -40)
+shape = SubResource("CircleShape2D_hitbox")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -44)
+shape = SubResource("CircleShape2D_hurtbox")

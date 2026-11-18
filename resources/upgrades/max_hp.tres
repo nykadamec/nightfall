@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PassiveData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/passive_data.gd" id="1_pd"]
+
+[resource]
+script = ExtResource("1_pd")
+id = "vitality"
+display_name = "Vitality"
+description = "+20 Max HP and heal 20 HP."
+stat_type = 0
+amount_per_level = 20.0
+max_level = 5

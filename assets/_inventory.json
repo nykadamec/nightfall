@@ -1,0 +1,805 @@
+{
+  "tile_size": [
+    128,
+    64
+  ],
+  "block_cell_h": 81,
+  "prop_scale": 0.40442338072669826,
+  "char_scale": 0.5656565656565656,
+  "player_target_h": 112,
+  "warnings": [],
+  "assets": [
+    {
+      "path": "tiles/tile_grass.png",
+      "w": 128,
+      "h": 80,
+      "category": "tiles",
+      "use": "Isometric grass floor tile (with thickness).",
+      "notes": "Block tile with side thickness; top face is 128x64 iso diamond. Source width 318px, thickness ~2px after scale."
+    },
+    {
+      "path": "tiles/tile_grass_flat.png",
+      "w": 128,
+      "h": 64,
+      "category": "tiles",
+      "use": "Flat 128x64 top-face only of tile_grass.",
+      "notes": "Warped to a clean 2:1 diamond and masked. Use if you do not want extruded sides."
+    },
+    {
+      "path": "tiles/tile_cobblestone.png",
+      "w": 128,
+      "h": 79,
+      "category": "tiles",
+      "use": "Isometric cobblestone floor tile (with thickness).",
+      "notes": "Block tile with side thickness; top face is 128x64 iso diamond. Source width 316px, thickness ~2px after scale."
+    },
+    {
+      "path": "tiles/tile_cobblestone_flat.png",
+      "w": 128,
+      "h": 64,
+      "category": "tiles",
+      "use": "Flat 128x64 top-face only of tile_cobblestone.",
+      "notes": "Warped to a clean 2:1 diamond and masked. Use if you do not want extruded sides."
+    },
+    {
+      "path": "tiles/tile_dirt.png",
+      "w": 128,
+      "h": 78,
+      "category": "tiles",
+      "use": "Isometric dirt floor tile (with thickness).",
+      "notes": "Block tile with side thickness; top face is 128x64 iso diamond. Source width 315px, thickness ~4px after scale."
+    },
+    {
+      "path": "tiles/tile_dirt_flat.png",
+      "w": 128,
+      "h": 64,
+      "category": "tiles",
+      "use": "Flat 128x64 top-face only of tile_dirt.",
+      "notes": "Warped to a clean 2:1 diamond and masked. Use if you do not want extruded sides."
+    },
+    {
+      "path": "tiles/tile_graveyard_soil.png",
+      "w": 128,
+      "h": 81,
+      "category": "tiles",
+      "use": "Isometric graveyard soil floor (bones, weeds).",
+      "notes": "Block tile with side thickness; top face is 128x64 iso diamond. Source width 317px, thickness ~3px after scale."
+    },
+    {
+      "path": "tiles/tile_graveyard_soil_flat.png",
+      "w": 128,
+      "h": 64,
+      "category": "tiles",
+      "use": "Flat 128x64 top-face only of tile_graveyard_soil.",
+      "notes": "Warped to a clean 2:1 diamond and masked. Use if you do not want extruded sides."
+    },
+    {
+      "path": "tiles/tile_water.png",
+      "w": 128,
+      "h": 81,
+      "category": "tiles",
+      "use": "Isometric water / purple bog floor tile.",
+      "notes": "Block tile with side thickness; top face is 128x64 iso diamond. Source width 318px, thickness ~2px after scale."
+    },
+    {
+      "path": "tiles/tile_water_flat.png",
+      "w": 128,
+      "h": 64,
+      "category": "tiles",
+      "use": "Flat 128x64 top-face only of tile_water.",
+      "notes": "Warped to a clean 2:1 diamond and masked. Use if you do not want extruded sides."
+    },
+    {
+      "path": "tiles/tile_lava.png",
+      "w": 128,
+      "h": 81,
+      "category": "tiles",
+      "use": "Isometric lava floor tile.",
+      "notes": "Block tile with side thickness; top face is 128x64 iso diamond. Source width 316px, thickness ~3px after scale."
+    },
+    {
+      "path": "tiles/tile_lava_flat.png",
+      "w": 128,
+      "h": 64,
+      "category": "tiles",
+      "use": "Flat 128x64 top-face only of tile_lava.",
+      "notes": "Warped to a clean 2:1 diamond and masked. Use if you do not want extruded sides."
+    },
+    {
+      "path": "tiles/tileset_iso_blocks.png",
+      "w": 768,
+      "h": 81,
+      "category": "tiles",
+      "use": "Godot TileSet atlas (block tiles with thickness), 6 tiles left-to-right: grass, cobblestone, dirt, graveyard_soil, water, lava.",
+      "notes": "Atlas 768x81. Each cell 128x81. TileSet tile_size = (128, 64). texture_region_size = (128, 81). Extra height is the extruded sides; bottom-align the footprint with the iso grid (see ASSETS.md)."
+    },
+    {
+      "path": "tiles/tileset_iso_flat.png",
+      "w": 768,
+      "h": 64,
+      "category": "tiles",
+      "use": "Godot TileSet atlas, flat 128x64 diamonds, same order as tileset_iso_blocks.png.",
+      "notes": "Atlas 768x64. tile_size = texture_region_size = (128, 64)."
+    },
+    {
+      "path": "props/castle_ruins.png",
+      "w": 138,
+      "h": 84,
+      "category": "props",
+      "use": "Castle-floor platform with ruined walls (multi-tile prop, not a single floor cell).",
+      "notes": " Scaled 0.404 (same as floor tiles) from source 345x213."
+    },
+    {
+      "path": "props/tree_dead.png",
+      "w": 80,
+      "h": 93,
+      "category": "props",
+      "use": "Dead tree obstacle, Y-sorted prop.",
+      "notes": " Scaled 0.404 (same as floor tiles) from source 203x234."
+    },
+    {
+      "path": "props/pillar.png",
+      "w": 59,
+      "h": 83,
+      "category": "props",
+      "use": "Stone pillar obstacle, Y-sorted prop.",
+      "notes": " Scaled 0.404 (same as floor tiles) from source 151x211."
+    },
+    {
+      "path": "props/crate.png",
+      "w": 63,
+      "h": 61,
+      "category": "props",
+      "use": "Wooden crate prop / cover.",
+      "notes": " Scaled 0.404 (same as floor tiles) from source 161x157."
+    },
+    {
+      "path": "props/barrel.png",
+      "w": 43,
+      "h": 59,
+      "category": "props",
+      "use": "Wooden barrel prop.",
+      "notes": " Scaled 0.404 (same as floor tiles) from source 112x150."
+    },
+    {
+      "path": "props/brazier.png",
+      "w": 51,
+      "h": 75,
+      "category": "props",
+      "use": "Lit brazier (static flame \u2014 no animation frames).",
+      "notes": " Scaled 0.404 (same as floor tiles) from source 131x191."
+    },
+    {
+      "path": "props/fence.png",
+      "w": 97,
+      "h": 80,
+      "category": "props",
+      "use": "Iron graveyard fence section.",
+      "notes": " Scaled 0.404 (same as floor tiles) from source 245x203."
+    },
+    {
+      "path": "props/skull_pile.png",
+      "w": 91,
+      "h": 65,
+      "category": "props",
+      "use": "Skull and bone pile decoration.",
+      "notes": " Scaled 0.404 (same as floor tiles) from source 230x166."
+    },
+    {
+      "path": "props/gravestones_group.png",
+      "w": 108,
+      "h": 87,
+      "category": "props",
+      "use": "Full gravestone cluster (four stones). Preferred prop for the graveyard \u2014 the stones sat close together on the sheet.",
+      "notes": "Merged from three connected components. Individual parts also exported. Scaled 0.404 (same as floor tiles) from source 273x219."
+    },
+    {
+      "path": "props/gravestone_cross.png",
+      "w": 35,
+      "h": 42,
+      "category": "props",
+      "use": "Cross-shaped gravestone (part of the grave cluster).",
+      "notes": "Part of the gravestone cluster; prefer gravestones_group.png unless you need a single stone. Scaled 0.404 (same as floor tiles) from source 95x111."
+    },
+    {
+      "path": "props/gravestones_left_front.png",
+      "w": 76,
+      "h": 69,
+      "category": "props",
+      "use": "Left + front tombstones (connected cluster; see also gravestones_group).",
+      "notes": "Part of the gravestone cluster; prefer gravestones_group.png unless you need a single stone. Scaled 0.404 (same as floor tiles) from source 192x178."
+    },
+    {
+      "path": "props/gravestone_right.png",
+      "w": 44,
+      "h": 50,
+      "category": "props",
+      "use": "Right tombstone from the grave cluster.",
+      "notes": "Part of the gravestone cluster; prefer gravestones_group.png unless you need a single stone. Scaled 0.404 (same as floor tiles) from source 113x129."
+    },
+    {
+      "path": "characters/player/player_sw.png",
+      "w": 122,
+      "h": 110,
+      "category": "characters/player",
+      "use": "Player, south-west / front-left (whip down-left).",
+      "notes": "Scaled 0.566 with the player (target height 112px). No animation frames exist \u2014 static sprite only. Use a small bob/squash tween as a placeholder."
+    },
+    {
+      "path": "characters/player/player_se.png",
+      "w": 116,
+      "h": 107,
+      "category": "characters/player",
+      "use": "Player, south-east / front-right (whip to the right).",
+      "notes": "Scaled 0.566 with the player (target height 112px). No animation frames exist \u2014 static sprite only. Use a small bob/squash tween as a placeholder."
+    },
+    {
+      "path": "characters/player/player_n.png",
+      "w": 95,
+      "h": 108,
+      "category": "characters/player",
+      "use": "Player, north / back view. No distinct north-east pose exists on the sheet; you can flip this or player_se as a stand-in.",
+      "notes": "Scaled 0.566 with the player (target height 112px). No animation frames exist \u2014 static sprite only. Use a small bob/squash tween as a placeholder."
+    },
+    {
+      "path": "characters/player/player_w.png",
+      "w": 138,
+      "h": 109,
+      "category": "characters/player",
+      "use": "Player, west / front-left variant. The sheet has two left-facing front poses and no unique NE view.",
+      "notes": "Scaled 0.566 with the player (target height 112px). No animation frames exist \u2014 static sprite only. Use a small bob/squash tween as a placeholder."
+    },
+    {
+      "path": "characters/enemies/zombie.png",
+      "w": 68,
+      "h": 98,
+      "category": "characters/enemies",
+      "use": "Zombie enemy, static idle.",
+      "notes": "Scaled 0.566 with the player (target height 112px). No animation frames exist \u2014 static sprite only. Use a small bob/squash tween as a placeholder."
+    },
+    {
+      "path": "characters/enemies/ghost.png",
+      "w": 64,
+      "h": 107,
+      "category": "characters/enemies",
+      "use": "Ghost enemy, static idle.",
+      "notes": "Scaled 0.566 with the player (target height 112px). No animation frames exist \u2014 static sprite only. Use a small bob/squash tween as a placeholder."
+    },
+    {
+      "path": "characters/enemies/mushroom.png",
+      "w": 94,
+      "h": 103,
+      "category": "characters/enemies",
+      "use": "Mushroom enemy, static idle. Cut-list for v1, but the sprite is ready.",
+      "notes": "Scaled 0.566 with the player (target height 112px). No animation frames exist \u2014 static sprite only. Use a small bob/squash tween as a placeholder."
+    },
+    {
+      "path": "characters/enemies/bat.png",
+      "w": 129,
+      "h": 80,
+      "category": "characters/enemies",
+      "use": "Bat enemy, static (wings open).",
+      "notes": "Scaled 0.566 with the player (target height 112px). No animation frames exist \u2014 static sprite only. Use a small bob/squash tween as a placeholder."
+    },
+    {
+      "path": "characters/enemies/skeleton.png",
+      "w": 100,
+      "h": 94,
+      "category": "characters/enemies",
+      "use": "Skeleton enemy with sword and shield, static idle.",
+      "notes": "Scaled 0.566 with the player (target height 112px). No animation frames exist \u2014 static sprite only. Use a small bob/squash tween as a placeholder."
+    },
+    {
+      "path": "characters/enemies/werewolf.png",
+      "w": 101,
+      "h": 98,
+      "category": "characters/enemies",
+      "use": "Werewolf enemy, static idle. Cut-list for v1, but the sprite is ready.",
+      "notes": "Scaled 0.566 with the player (target height 112px). No animation frames exist \u2014 static sprite only. Use a small bob/squash tween as a placeholder."
+    },
+    {
+      "path": "characters/enemies/vampire_lord.png",
+      "w": 184,
+      "h": 163,
+      "category": "characters/enemies",
+      "use": "Vampire lord boss, static idle.",
+      "notes": "Scaled 0.566 with the player (target height 112px). No animation frames exist \u2014 static sprite only. Use a small bob/squash tween as a placeholder."
+    },
+    {
+      "path": "pickups/chest.png",
+      "w": 55,
+      "h": 46,
+      "category": "pickups",
+      "use": "Loot chest pickup. Not in the v1 loop by default (cut list), sprite is ready.",
+      "notes": "Pickup drawn large on the concept sheet; rescaled to height 48px (not the character scale 0.566) so gems stay smaller than the player."
+    },
+    {
+      "path": "pickups/xp_gem_blue.png",
+      "w": 18,
+      "h": 28,
+      "category": "pickups",
+      "use": "XP gem (blue).",
+      "notes": "Pickup drawn large on the concept sheet; rescaled to height 28px (not the character scale 0.566) so gems stay smaller than the player."
+    },
+    {
+      "path": "pickups/xp_gem_green.png",
+      "w": 16,
+      "h": 26,
+      "category": "pickups",
+      "use": "XP gem (green).",
+      "notes": "Pickup drawn large on the concept sheet; rescaled to height 28px (not the character scale 0.566) so gems stay smaller than the player."
+    },
+    {
+      "path": "pickups/xp_gem_red.png",
+      "w": 18,
+      "h": 27,
+      "category": "pickups",
+      "use": "XP gem (red / rare).",
+      "notes": "Pickup drawn large on the concept sheet; rescaled to height 28px (not the character scale 0.566) so gems stay smaller than the player."
+    },
+    {
+      "path": "pickups/coin.png",
+      "w": 23,
+      "h": 28,
+      "category": "pickups",
+      "use": "Gold coin pickup (crown motif).",
+      "notes": "Pickup drawn large on the concept sheet; rescaled to height 28px (not the character scale 0.566) so gems stay smaller than the player."
+    },
+    {
+      "path": "pickups/chicken.png",
+      "w": 39,
+      "h": 34,
+      "category": "pickups",
+      "use": "Chicken / roast pickup (heal).",
+      "notes": "Pickup drawn large on the concept sheet; rescaled to height 36px (not the character scale 0.566) so gems stay smaller than the player."
+    },
+    {
+      "path": "ui/components/button_normal.png",
+      "w": 161,
+      "h": 84,
+      "category": "ui/components",
+      "use": "Main menu / UI text button, normal state.",
+      "notes": " Suggested NinePatchRect / StyleBoxTexture margins L5 T22 R5 B19."
+    },
+    {
+      "path": "ui/components/button_hover.png",
+      "w": 161,
+      "h": 85,
+      "category": "ui/components",
+      "use": "Button hover state (purple glow along the bottom).",
+      "notes": " Suggested NinePatchRect / StyleBoxTexture margins L4 T22 R6 B31."
+    },
+    {
+      "path": "ui/components/button_pressed.png",
+      "w": 161,
+      "h": 85,
+      "category": "ui/components",
+      "use": "Button pressed / focused state (stronger purple glow).",
+      "notes": " Suggested NinePatchRect / StyleBoxTexture margins L4 T19 R5 B8."
+    },
+    {
+      "path": "ui/components/button_disabled.png",
+      "w": 161,
+      "h": 86,
+      "category": "ui/components",
+      "use": "Button disabled / idle alternate (no purple glow). Confirm visually \u2014 4th state on the sheet.",
+      "notes": " Suggested NinePatchRect / StyleBoxTexture margins L6 T11 R6 B20."
+    },
+    {
+      "path": "ui/components/panel_frame_small.png",
+      "w": 147,
+      "h": 186,
+      "category": "ui/components",
+      "use": "Small square 9-slice panel frame (gold corners, mid-edge gems). Prefer fixed size or accept that mid-edge gems will stretch.",
+      "notes": " Mid-edge gems mean a standard 9-slice will stretch the gem if the control size changes a lot; keep sizes near native or overlay the gem. Suggested NinePatchRect / StyleBoxTexture margins L5 T52 R7 B41."
+    },
+    {
+      "path": "ui/components/panel_frame_large.png",
+      "w": 273,
+      "h": 205,
+      "category": "ui/components",
+      "use": "Large rectangular 9-slice panel frame (gold corners, mid-edge gems).",
+      "notes": " Mid-edge gems mean a standard 9-slice will stretch the gem if the control size changes a lot; keep sizes near native or overlay the gem. Suggested NinePatchRect / StyleBoxTexture margins L6 T39 R6 B42."
+    },
+    {
+      "path": "ui/components/bar_health.png",
+      "w": 305,
+      "h": 104,
+      "category": "ui/components",
+      "use": "HUD health bar, full art (frame + red fill + skull).",
+      "notes": ""
+    },
+    {
+      "path": "ui/components/bar_xp.png",
+      "w": 304,
+      "h": 81,
+      "category": "ui/components",
+      "use": "HUD XP / purple bar, full art (frame + fill + gem).",
+      "notes": ""
+    },
+    {
+      "path": "ui/components/checkbox_off.png",
+      "w": 52,
+      "h": 52,
+      "category": "ui/components",
+      "use": "Empty checkbox / square toggle, off.",
+      "notes": ""
+    },
+    {
+      "path": "ui/components/toggle_off.png",
+      "w": 88,
+      "h": 48,
+      "category": "ui/components",
+      "use": "Pill toggle, off (knob left).",
+      "notes": ""
+    },
+    {
+      "path": "ui/components/toggle_on.png",
+      "w": 88,
+      "h": 47,
+      "category": "ui/components",
+      "use": "Pill toggle, on (purple, knob right).",
+      "notes": ""
+    },
+    {
+      "path": "ui/components/checkbox_on.png",
+      "w": 53,
+      "h": 51,
+      "category": "ui/components",
+      "use": "Checkbox on, gold check.",
+      "notes": ""
+    },
+    {
+      "path": "ui/components/toggle_on_wide.png",
+      "w": 89,
+      "h": 47,
+      "category": "ui/components",
+      "use": "Alternate on-toggle (purple pill). Use toggle_on.png unless you need this variant.",
+      "notes": ""
+    },
+    {
+      "path": "ui/components/toggle_off_alt.png",
+      "w": 87,
+      "h": 47,
+      "category": "ui/components",
+      "use": "Alternate off-toggle (knob right, unlit).",
+      "notes": ""
+    },
+    {
+      "path": "ui/components/checkbox_on_plain.png",
+      "w": 51,
+      "h": 51,
+      "category": "ui/components",
+      "use": "Checkbox on, plain / grey check (third state).",
+      "notes": ""
+    },
+    {
+      "path": "ui/components/slider.png",
+      "w": 311,
+      "h": 44,
+      "category": "ui/components",
+      "use": "Horizontal slider (track + gold knob + end diamonds). Knob is baked into the art; for a working slider, use the track as a NinePatch and overlay a copy of slider_knob.png.",
+      "notes": ""
+    },
+    {
+      "path": "ui/components/tooltip_panel.png",
+      "w": 303,
+      "h": 176,
+      "category": "ui/components",
+      "use": "Tooltip / info panel. Sample sword art and placeholder dots are baked into the texture \u2014 use as a 9-slice frame or crop the inner area.",
+      "notes": " Mid-edge gems mean a standard 9-slice will stretch the gem if the control size changes a lot; keep sizes near native or overlay the gem. Suggested NinePatchRect / StyleBoxTexture margins L7 T26 R7 B11."
+    },
+    {
+      "path": "ui/components/bar_gold.png",
+      "w": 175,
+      "h": 75,
+      "category": "ui/components",
+      "use": "Resource chip: gold coin + empty bar (HUD gold).",
+      "notes": " Suggested NinePatchRect / StyleBoxTexture margins L15 T19 R13 B9."
+    },
+    {
+      "path": "ui/components/bar_gem.png",
+      "w": 174,
+      "h": 74,
+      "category": "ui/components",
+      "use": "Resource chip: purple gem + empty bar.",
+      "notes": " Suggested NinePatchRect / StyleBoxTexture margins L71 T12 R14 B13."
+    },
+    {
+      "path": "ui/components/button_pause.png",
+      "w": 71,
+      "h": 70,
+      "category": "ui/components",
+      "use": "Square pause button.",
+      "notes": " Suggested NinePatchRect / StyleBoxTexture margins L10 T19 R9 B6."
+    },
+    {
+      "path": "ui/components/button_settings.png",
+      "w": 72,
+      "h": 70,
+      "category": "ui/components",
+      "use": "Square settings / gear button.",
+      "notes": " Suggested NinePatchRect / StyleBoxTexture margins L25 T19 R23 B23."
+    },
+    {
+      "path": "ui/components/button_close.png",
+      "w": 70,
+      "h": 70,
+      "category": "ui/components",
+      "use": "Square close / X button.",
+      "notes": " Suggested NinePatchRect / StyleBoxTexture margins L8 T19 R14 B6."
+    },
+    {
+      "path": "ui/components/bar_boss.png",
+      "w": 617,
+      "h": 141,
+      "category": "ui/components",
+      "use": "Boss HP bar, full art (ornate skulls + red fill).",
+      "notes": ""
+    },
+    {
+      "path": "ui/components/slider_knob.png",
+      "w": 38,
+      "h": 40,
+      "category": "ui/components",
+      "use": "Slider knob extracted from the centre of slider.png.",
+      "notes": "May include a bit of the track; trim in-engine if needed."
+    },
+    {
+      "path": "ui/components/bar_health_frame.png",
+      "w": 305,
+      "h": 104,
+      "category": "ui/components",
+      "use": "Frame only of bar_health (fill replaced with the empty-track colour).",
+      "notes": "Use as the bar background; overlay the fill."
+    },
+    {
+      "path": "ui/components/bar_health_fill.png",
+      "w": 185,
+      "h": 34,
+      "category": "ui/components",
+      "use": "Fill texture of bar_health.",
+      "notes": "Stretch or clip horizontally according to the current value, inside the frame's inner trough."
+    },
+    {
+      "path": "ui/components/bar_xp_frame.png",
+      "w": 304,
+      "h": 81,
+      "category": "ui/components",
+      "use": "Frame only of bar_xp (fill replaced with the empty-track colour).",
+      "notes": "Use as the bar background; overlay the fill."
+    },
+    {
+      "path": "ui/components/bar_xp_fill.png",
+      "w": 214,
+      "h": 27,
+      "category": "ui/components",
+      "use": "Fill texture of bar_xp.",
+      "notes": "Stretch or clip horizontally according to the current value, inside the frame's inner trough."
+    },
+    {
+      "path": "ui/components/bar_boss_frame.png",
+      "w": 617,
+      "h": 141,
+      "category": "ui/components",
+      "use": "Frame only of bar_boss (fill replaced with the empty-track colour).",
+      "notes": "Use as the bar background; overlay the fill."
+    },
+    {
+      "path": "ui/components/bar_boss_fill.png",
+      "w": 233,
+      "h": 37,
+      "category": "ui/components",
+      "use": "Fill texture of bar_boss.",
+      "notes": "Stretch or clip horizontally according to the current value, inside the frame's inner trough."
+    },
+    {
+      "path": "ui/components/icon_sword.png",
+      "w": 91,
+      "h": 87,
+      "category": "ui/components",
+      "use": "Weapon icon: sword (gold slot).",
+      "notes": "Includes the gold slot frame. Use on level-up cards or the inventory grid."
+    },
+    {
+      "path": "ui/components/icon_mace.png",
+      "w": 91,
+      "h": 87,
+      "category": "ui/components",
+      "use": "Weapon icon: mace (gold slot).",
+      "notes": "Includes the gold slot frame. Use on level-up cards or the inventory grid."
+    },
+    {
+      "path": "ui/components/icon_axe.png",
+      "w": 90,
+      "h": 87,
+      "category": "ui/components",
+      "use": "Weapon icon: axe (gold slot).",
+      "notes": "Includes the gold slot frame. Use on level-up cards or the inventory grid."
+    },
+    {
+      "path": "ui/components/icon_bow.png",
+      "w": 90,
+      "h": 86,
+      "category": "ui/components",
+      "use": "Weapon icon: bow (gold slot).",
+      "notes": "Includes the gold slot frame. Use on level-up cards or the inventory grid."
+    },
+    {
+      "path": "ui/components/icon_book.png",
+      "w": 87,
+      "h": 87,
+      "category": "ui/components",
+      "use": "Weapon / skill icon: spellbook (gold slot).",
+      "notes": "Includes the gold slot frame. Use on level-up cards or the inventory grid."
+    },
+    {
+      "path": "ui/components/icon_sword_alt.png",
+      "w": 89,
+      "h": 85,
+      "category": "ui/components",
+      "use": "Weapon icon: alternate sword (gold slot).",
+      "notes": "Includes the gold slot frame. Use on level-up cards or the inventory grid."
+    },
+    {
+      "path": "ui/components/icon_spear.png",
+      "w": 91,
+      "h": 84,
+      "category": "ui/components",
+      "use": "Weapon icon: purple spear / pike (gold slot).",
+      "notes": "Includes the gold slot frame. Use on level-up cards or the inventory grid."
+    },
+    {
+      "path": "ui/components/icon_staff.png",
+      "w": 90,
+      "h": 84,
+      "category": "ui/components",
+      "use": "Weapon icon: purple staff (gold slot).",
+      "notes": "Includes the gold slot frame. Use on level-up cards or the inventory grid."
+    },
+    {
+      "path": "ui/components/icon_scythe.png",
+      "w": 89,
+      "h": 85,
+      "category": "ui/components",
+      "use": "Weapon icon: scythe (gold slot).",
+      "notes": "Includes the gold slot frame. Use on level-up cards or the inventory grid."
+    },
+    {
+      "path": "ui/components/icon_shield.png",
+      "w": 78,
+      "h": 81,
+      "category": "ui/components",
+      "use": "Passive / upgrade icon: shield (purple slot).",
+      "notes": "Includes the purple slot frame."
+    },
+    {
+      "path": "ui/components/icon_ring.png",
+      "w": 77,
+      "h": 81,
+      "category": "ui/components",
+      "use": "Passive / upgrade icon: ring (purple slot).",
+      "notes": "Includes the purple slot frame."
+    },
+    {
+      "path": "ui/components/icon_sun.png",
+      "w": 78,
+      "h": 82,
+      "category": "ui/components",
+      "use": "Passive / upgrade icon: sun (purple slot).",
+      "notes": "Includes the purple slot frame."
+    },
+    {
+      "path": "ui/components/icon_flame.png",
+      "w": 75,
+      "h": 82,
+      "category": "ui/components",
+      "use": "Passive / upgrade icon: flame (purple slot).",
+      "notes": "Includes the purple slot frame."
+    },
+    {
+      "path": "ui/components/icon_bat.png",
+      "w": 75,
+      "h": 82,
+      "category": "ui/components",
+      "use": "Passive / upgrade icon: bat (purple slot).",
+      "notes": "Includes the purple slot frame."
+    },
+    {
+      "path": "ui/components/icon_potion.png",
+      "w": 75,
+      "h": 82,
+      "category": "ui/components",
+      "use": "Passive / upgrade icon: potion (purple slot).",
+      "notes": "Includes the purple slot frame."
+    },
+    {
+      "path": "ui/components/icon_skull.png",
+      "w": 78,
+      "h": 83,
+      "category": "ui/components",
+      "use": "Passive / upgrade icon: skull (purple slot).",
+      "notes": "Includes the purple slot frame."
+    },
+    {
+      "path": "ui/components/icon_swirl.png",
+      "w": 74,
+      "h": 83,
+      "category": "ui/components",
+      "use": "Passive / upgrade icon: swirl / magic (purple slot).",
+      "notes": "Includes the purple slot frame."
+    },
+    {
+      "path": "ui/mockups/main_menu_reference.png",
+      "w": 1280,
+      "h": 720,
+      "category": "ui/mockups",
+      "use": "Main-menu mockup (1280x720). Use as a backdrop/reference only \u2014 the Nightfall logo, buttons and gold counter are already painted in. Do not treat this as a widget atlas.",
+      "notes": "Saved as PNG from the concept JPG. Not background-keyed."
+    },
+    {
+      "path": "ui/mockups/level_up_reference.png",
+      "w": 1280,
+      "h": 720,
+      "category": "ui/mockups",
+      "use": "Level-up 3-card mockup (1280x720). Reference for layout, typography and card treatment, not a slice sheet.",
+      "notes": "Saved as PNG from the concept JPG. Not background-keyed."
+    },
+    {
+      "path": "ui/mockups/gameplay_reference.png",
+      "w": 1280,
+      "h": 720,
+      "category": "ui/mockups",
+      "use": "Gameplay HUD / arena mockup (1280x720). Reference only \u2014 characters and tiles on this image are baked into a single scene.",
+      "notes": "Saved as PNG from the concept JPG. Not background-keyed."
+    },
+    {
+      "path": "_source/sheets/tileset_props.jpg",
+      "w": 1024,
+      "h": 1024,
+      "category": "_source/sheets",
+      "use": "Original tiles + props concept sheet (JPG, dark gray background).",
+      "notes": "Original concept; do not import these JPGs as in-game sprites (no alpha)."
+    },
+    {
+      "path": "_source/sheets/characters.jpg",
+      "w": 1024,
+      "h": 1024,
+      "category": "_source/sheets",
+      "use": "Original characters / enemies / pickups concept sheet.",
+      "notes": "Original concept; do not import these JPGs as in-game sprites (no alpha)."
+    },
+    {
+      "path": "_source/sheets/ui_kit.jpg",
+      "w": 1024,
+      "h": 1024,
+      "category": "_source/sheets",
+      "use": "Original UI component kit concept sheet.",
+      "notes": "Original concept; do not import these JPGs as in-game sprites (no alpha)."
+    },
+    {
+      "path": "_source/sheets/main_menu_mockup.jpg",
+      "w": 1280,
+      "h": 720,
+      "category": "_source/sheets",
+      "use": "Original main-menu mockup JPG.",
+      "notes": "Original concept; do not import these JPGs as in-game sprites (no alpha)."
+    },
+    {
+      "path": "_source/sheets/level_up_mockup.jpg",
+      "w": 1280,
+      "h": 720,
+      "category": "_source/sheets",
+      "use": "Original level-up mockup JPG.",
+      "notes": "Original concept; do not import these JPGs as in-game sprites (no alpha)."
+    },
+    {
+      "path": "_source/sheets/gameplay_mockup.jpg",
+      "w": 1280,
+      "h": 720,
+      "category": "_source/sheets",
+      "use": "Original gameplay mockup JPG.",
+      "notes": "Original concept; do not import these JPGs as in-game sprites (no alpha)."
+    }
+  ]
+}

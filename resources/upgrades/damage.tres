@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PassiveData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/passive_data.gd" id="1_pd"]
+
+[resource]
+script = ExtResource("1_pd")
+id = "blood_sigil"
+display_name = "Blood Sigil"
+description = "+15% All Weapon Damage."
+stat_type = 3
+amount_per_level = 0.15
+max_level = 5
